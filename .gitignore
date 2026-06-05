@@ -217,6 +217,15 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Project data and outputs
+# Project data
 data/*
+
+# Ignore everything in output
 output/*
+
+# But keep output CSV and PNG files
+!output/*.csv
+!output/*.png
+
+# Also keep the output folder itself
+!output/

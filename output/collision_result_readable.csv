@@ -1,0 +1,2 @@
+collision_time,collision_latitude,collision_longitude,vessel_name_1,mmsi_1,vessel_1_ais_time,vessel_1_latitude,vessel_1_longitude,vessel_1_speed_knots,vessel_name_2,mmsi_2,vessel_2_ais_time,vessel_2_latitude,vessel_2_longitude,vessel_2_speed_knots,distance_between_vessels_m,time_diff_seconds,collision_score
+2021-12-13 02:27:43,55.22308,14.243707,KARIN HOEJ,219021240,2021-12-13 02:27:29,55.223067,14.24373,10.3,MV SCOT CARRIER,232018267,2021-12-13 02:27:58,55.223092,14.243683,3.9,4.08,29,-46.31
