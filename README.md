@@ -52,6 +52,16 @@ To pull the image, run:
 docker pull justas321/ais-collision-detection:latest
 ```
 
+## Data Requirement
+
+The raw AIS data is not included inside the Docker image. Before running the project, the December 2021 AIS CSV files must be placed in the local `data/aisdk-2021-12/` folder.
+
+The expected path is:
+
+```text
+data/aisdk-2021-12/
+```
+
 ## Running the Project
 
 From the root folder of the repository, run:
