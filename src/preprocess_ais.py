@@ -15,12 +15,13 @@ from pyspark.sql.functions import (
     floor,
 )
 
-
+# Simple logger helper used throughout the preprocessing pipeline.
 def log(message):
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {message}", flush=True)
 
-
 def main():
+    # Entry point for AIS preprocessing.
+    # Reads raw CSV files for December AIS data and writes a cleaned Parquet dataset.
     log("Starting AIS collision detection preprocessing...")
 
     spark = (
@@ -42,6 +43,8 @@ def main():
     earth_radius_km = 6371.0
     time_bucket_seconds = 10
 
+    # Coordinates and radius define the geographic region of interest.
+    # Only vessels within 50 nautical miles of the reference point are kept.
     log(f"Checking data folder: {data_path}")
 
     if not os.path.exists(data_path):
@@ -87,6 +90,7 @@ def main():
 
     log("Applying date, coordinate, and speed filters...")
 
+    # Keep only true December 2021 AIS points and remove obviously invalid rows.
     df = df.filter(
         (col("timestamp") >= "2021-12-01 00:00:00") &
         (col("timestamp") <= "2021-12-31 23:59:59")
@@ -107,6 +111,7 @@ def main():
 
     log("Applying 50 nautical mile geographic filter...")
 
+    # Compute distance from the center point in kilometers and drop distant vessels.
     df = df.withColumn(
         "distance_from_center_km",
         2 * lit(earth_radius_km) * asin(
