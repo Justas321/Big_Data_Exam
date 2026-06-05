@@ -2,8 +2,24 @@ services:
   ais-collision:
     build: .
     container_name: ais-collision
+
+    mem_limit: 8g
+    memswap_limit: 8g
+
     volumes:
       - ./data:/app/data
       - ./output:/app/output
+
     environment:
       - PYSPARK_PYTHON=python
+      - SPARK_DRIVER_MEMORY=4g
+
+    command:
+      - spark-submit
+      - --driver-memory
+      - 4g
+      - --conf
+      - spark.driver.maxResultSize=1g
+      - --conf
+      - spark.sql.shuffle.partitions=64
+      - /app/src/main.py
